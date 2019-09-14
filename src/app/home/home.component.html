@@ -1,0 +1,40 @@
+<div class="home-container">
+    <div class="featured-post">
+        <div class="post-highlight">
+            <p>
+                Most doctors think Obamacare
+                has helped patients get better healthcare,
+                even as a lengthy court battle threat
+            </p>
+            <span>Read More >></span>
+        </div>
+    </div>
+    <div class="filter-posts">
+        <ul>
+            <span>Sort</span>
+            <li *ngFor="let sortOption of sortOptions" [class.active]="selectedSortOption ==sortOption"  [ngClass]='sortOption' (click)="getUpdatedRedditFeeds(sortOption)">{{sortOption}}</li>
+        </ul>
+    </div>
+    <div class="post-container">
+        <div class="main-posts">
+            <h2>Latest Posts</h2>
+            <div class="post-item" *ngFor="let post of posts">
+                <p>
+                    <img *ngIf="post.data.thumbnail !='default'" src={{post.data.thumbnail}}>
+                    <img *ngIf="post.data.thumbnail =='default' " src='../../assets/images/default.png'>
+                    <span [style.background-color]="catagoryColor[post.data.link_flair_text]">{{post.data.link_flair_text}}</span>
+                   {{post.data.title}}
+                </p>
+                <ul class="post-info">
+                    <li>Posted by <span>{{post.data.author}}</span></li>
+                    <li><span class="comments">{{post.data.num_comments}}</span> Comments</li>
+                    <li><span class="ups">{{post.data.score}}</span> Ups</li>
+                </ul>
+                <hr>
+            </div>
+        </div>
+        <div class="side-bar">
+            <h2>Featured Posts</h2>
+        </div>
+    </div>
+</div>

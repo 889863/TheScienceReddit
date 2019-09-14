@@ -1,0 +1,185 @@
+.home-container{
+    width: 100%;
+    background-position-y: top;
+    overflow-x: hidden;
+    position: relative;
+    z-index: 9;
+    margin-top: 100px;
+    .featured-post{
+        width: 100%;
+        height: 300px;
+        background: #412c89 url(../../assets/images/science1.png);
+        background-position: right;
+        background-repeat: no-repeat;
+
+        .post-highlight{
+            padding: 30px 50px;
+            color: #FFFFFF;
+            font-family: robotoRegular;
+            max-width: 65%;
+            p{
+                font-size: 39px;
+                line-height: 48px;
+            }
+            span{
+                padding-top: 15px;
+                display: block;
+                text-decoration: underline;
+                cursor: pointer;
+                color: #a1a1a1;
+                &:hover{
+                    color: #FFFFFF; 
+                }
+            }
+        }
+    }
+    .filter-posts{
+        width: 100%;
+        background: #eeeeee;
+        ul{
+            padding-left: 50px;
+            span{
+                text-transform: uppercase;
+                line-height: 41px;
+                background: #041c3f;
+                color: #FFF;
+                padding: 10px;
+                margin-right: 12px;
+                font-family: robotoMedium;
+            }
+            li{
+                display: inline-block;
+                padding-right: 20px;
+                line-height: 41px;
+                padding-left: 26px;
+                cursor: pointer;
+                color: #041c3f;
+                opacity: .5;
+                text-transform: capitalize;
+                &.active{
+                    opacity: 1; 
+                }
+                &:hover{
+                    opacity: 1;
+                }
+                
+                &.hot{
+                    background: url(../../assets/images/hot_icon.svg);
+                    background-repeat: no-repeat;
+                    background-position: left center;
+                }
+                &.new{
+                    background: url(../../assets/images/new_icon.svg);
+                    background-repeat: no-repeat;
+                    background-position: left center;
+                }
+                &.controversial{
+                    background: url(../../assets/images/Controversial_icon.svg);
+                    background-repeat: no-repeat;
+                    background-position: left center;
+                }
+                &.top{
+                    background: url(../../assets/images/top_icon.svg);
+                    background-repeat: no-repeat;
+                    background-position: left center;
+                }
+                &.rising{
+                    background: url(../../assets/images/rising_icon.svg);
+                    background-repeat: no-repeat;
+                    background-position: left center;
+                }
+            }
+        }
+    }
+    .post-container{
+        width:100%;
+        padding-top: 30px;
+        .main-posts{
+            width: 70%;
+            display: inline-block;
+            vertical-align: top;
+            h2{
+                font-family: robotoRegular;
+                font-size: 32px;
+                color: #041c3f;
+                font-weight: normal;
+                padding-left: 50px;
+                padding-bottom: 20px;
+            }
+            .post-item{
+                padding: 10px 50px;
+                color: #423748;
+                p{
+                    font-family: robotoRegular;
+                    font-size: 18px;
+                    min-height: 100px;
+                    text-align: justify;
+                    text-align: justify;
+                    span{
+                        font-family: robotoItalic;
+                        font-size: 16px;
+                        display: inline-block;
+                        background: #041c3f;
+                        color: #FFFFFF;
+                        line-height: 23px;
+                        padding: 0px 5px;
+                        border-radius: 5px;
+                    }
+                    img{
+                        float: left;
+                        margin-right: 10px;
+                        max-height: 100px;
+                    }
+                }
+                hr{
+                    margin-bottom: 30px;
+                    opacity: .6;
+                }
+                ul{
+                    text-decoration: none;
+                    margin-top: 25px;
+                    li {                      
+                        text-decoration: none;
+                        display: inline-block;
+                        margin-right: 15px;
+                        font-family:robotoItalic;
+                        span{
+                            color: #041c3f;
+                            width: 20px;
+                            height: 20px;
+                            padding-left: 23px;
+                            background: url('../../assets/images/author.svg') no-repeat;
+                            background-size: 20px;
+                            font-family: robotoMedium;
+                            &.comments{
+                                background: url('../../assets/images/comment.svg') no-repeat;
+                                background-size: 20px;
+                            }
+                            &.ups{
+                                background: url('../../assets/images/ups.svg') no-repeat;
+                                background-size: 20px;
+                            }
+
+                        }
+                    }
+                }
+            }
+        }
+        .side-bar{
+            width: 28%;
+            display: inline-block;
+            background: #eeeeee;
+            border-radius: 10px;
+            min-height: 400px;
+            vertical-align: top;
+            h2{
+                font-family: robotoRegular;
+                font-size: 24px;
+                color: #041c3f;
+                font-weight: normal;
+                padding-left: 50px;
+                padding-top: 20px;
+            }
+        }
+    }
+}
