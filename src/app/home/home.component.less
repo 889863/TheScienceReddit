@@ -11,12 +11,11 @@
         background: #412c89 url(../../assets/images/science1.png);
         background-position: right;
         background-repeat: no-repeat;
-
         .post-highlight{
             padding: 30px 50px;
             color: #FFFFFF;
             font-family: robotoRegular;
-            max-width: 65%;
+            max-width: 70%;
             p{
                 font-size: 39px;
                 line-height: 48px;
@@ -26,9 +25,34 @@
                 display: block;
                 text-decoration: underline;
                 cursor: pointer;
-                color: #a1a1a1;
+                color: #d1db2a;
                 &:hover{
                     color: #FFFFFF; 
+                }
+            }
+            ul{
+                width: 100%;
+                text-align: left;
+                margin-top: 10px;
+                li{
+                    display: inline-block;
+                    text-decoration: none;
+                    padding-right: 13px;
+                    padding-left: 13px;
+                    border-right: 1px solid gray;
+                    cursor: pointer;
+                    //color: #f40083;
+                    &:first-child{
+                        padding-left: 0px;
+                    }
+                    &:last-child{
+                        border: none;
+                    }
+                    i{
+                        display: inline-block;
+                        text-decoration: none;
+                        color: #f40083;
+                    }
                 }
             }
         }
@@ -46,6 +70,9 @@
                 padding: 10px;
                 margin-right: 12px;
                 font-family: robotoMedium;
+                span{
+                    display: none;
+                }
             }
             li{
                 display: inline-block;
@@ -103,18 +130,22 @@
                 font-size: 32px;
                 color: #041c3f;
                 font-weight: normal;
-                padding-left: 50px;
+                padding-left: 35px;
                 padding-bottom: 20px;
             }
             .post-item{
-                padding: 10px 50px;
+                margin: 10px 30px;
                 color: #423748;
+                border: 1px solid lightgrey;
+                border-radius: 10px;
+                padding: 15px;
+                margin-bottom: 20px;
                 p{
                     font-family: robotoRegular;
                     font-size: 18px;
                     min-height: 100px;
                     text-align: justify;
-                    text-align: justify;
+                    cursor: pointer;
                     span{
                         font-family: robotoItalic;
                         font-size: 16px;
@@ -132,12 +163,13 @@
                     }
                 }
                 hr{
-                    margin-bottom: 30px;
-                    opacity: .6;
+                    margin-bottom: 0px;
+                    opacity: .3;
                 }
                 ul{
                     text-decoration: none;
                     margin-top: 25px;
+                    cursor: pointer;
                     li {                      
                         text-decoration: none;
                         display: inline-block;
@@ -168,17 +200,209 @@
         .side-bar{
             width: 28%;
             display: inline-block;
-            background: #eeeeee;
+            background: #f5f5f5;
             border-radius: 10px;
             min-height: 400px;
             vertical-align: top;
+            margin-top: 70px;
+            border: 1px solid lightgrey;
             h2{
-                font-family: robotoRegular;
+                font-family: robotoMedium;
                 font-size: 24px;
                 color: #041c3f;
-                font-weight: normal;
-                padding-left: 50px;
                 padding-top: 20px;
+                border-bottom: 3px dotted #FE6847;
+                line-height: 40px;
+                margin-bottom: 20px;
+                text-align: center
+            }
+            .subreddit-list{
+                margin: 10px;
+                .subreddit-item{
+                    text-align: center;
+                    padding: 20px 0px;
+                    border-bottom: 1px solid #FE6847;
+                    margin-bottom: 20px;
+                    padding-top: 0px;
+                    h4{
+                        font-family: robotoBold;
+                        font-size: 22px;
+                        color: #FE6847;
+                        font-weight: normal;
+                        text-transform: uppercase;
+                        span{
+                            display: block;
+                            font-family: robotoRegular;
+                            font-size: 17px;
+                            text-transform: capitalize;
+                        }
+                    }
+                    img{
+                        width: 100px;
+                        margin: 15px;
+                    }
+                    p{
+                        color: rgb(68, 16, 4);
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 720px) {
+    .home-container{
+        .featured-post{
+            width: 100%;
+            height: 300px;
+            background: #412c89;
+            .post-highlight{
+                max-width: 100%;
+                p{
+                    font-size: 35px;
+                    line-height: 45px;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 360px) {
+    .home-container{
+        .featured-post{
+            width: 100%;
+            height: 300px;
+            background: #412c89;
+            .post-highlight{
+                padding: 20px 20px;
+                p{
+                    font-size: 28px;
+                    line-height: 33px;
+                }
+                span{
+                    padding-top: 15px;
+                    display: block;
+                    text-decoration: underline;
+                    cursor: pointer;
+                    color: #d1db2a;
+                    &:hover{
+                        color: #FFFFFF; 
+                    }
+                }
+                ul{
+                    width: 100%;
+                    text-align: left;
+                    margin-top: 10px;
+                    li{
+                        display: none;
+                        cursor: pointer;
+                        border: none;
+                        padding: 0px;
+                        //color: #f40083;
+                        &.author{
+                            display: block;
+                        }
+                    }
+                }
+            }
+        }
+        .filter-posts{
+            ul{
+                padding-left: 0px;
+                max-height: 42px;
+                background: #eeeeee;
+                width: 100%;
+                span{
+                    text-transform: uppercase;                  
+                    span{
+                        background: #041c3f url("../../assets/images/menu.svg");
+                        background-repeat: no-repeat;
+                        padding-left: 20px;
+                        background-size: 34px;
+                        background-position: left center;
+                        display: inline-block;
+                        padding-top: 6px;
+                        cursor: pointer;
+                        &.change{
+                            display: inline-block;
+                            background: #041c3f url("../../assets/images/menu_open.svg");
+                            background-repeat: no-repeat;
+                            padding-left: 20px;
+                            background-size: 34px;
+                            background-position: left center;
+                        }
+                    }
+                }
+                li{
+                    display: none;
+                    &.active{
+                        opacity: 1; 
+                    }
+                    &:hover{
+                        opacity: 1;
+                    }
+                    
+                }
+
+                &.change{
+                    max-height: 250px;
+                    background: #eeeeee;
+                    position: absolute;
+                    z-index: 999999999;
+                    width: 100%;
+                    transition: max-height 0.6s;
+                    li{
+                        display: block;
+                        color: #041c3f;
+                        margin-left: 48px;
+                        &.active{
+                            opacity: 1; 
+                        }
+                        &:hover{
+                            opacity: 1;
+                        }
+                        
+                    }
+                }
+            }
+        }
+        .post-container{
+            .main-posts{
+                width: 100%;
+                h2{
+                    padding-left: 15px;
+                    padding-bottom: 5px;
+                }
+                .post-item{
+                    margin: 10px 10px;
+                    p{
+                        font-family: robotoRegular;
+                        font-size: 16px;
+                        min-height: 80px;
+                        cursor: pointer;
+                        text-align: left;
+                       
+                        img{
+                            float: left;
+                            margin-right: 10px;
+                            max-height: 75px;
+                        }
+                    }
+                    hr{
+                        margin-bottom: 0px;
+                        opacity: .3;
+                    }
+                    ul{
+                        margin-top: 15px;
+                        cursor: pointer;
+                        li {                      
+                            line-height: 28px;
+                        }
+                    }
+                }
+            }
+            .side-bar{
+                display: none;
             }
         }
     }

@@ -1,40 +1,56 @@
 <div class="home-container">
     <div class="featured-post">
-        <div class="post-highlight">
+        <div class="post-highlight" *ngIf="featuredPost">
             <p>
-                Most doctors think Obamacare
-                has helped patients get better healthcare,
-                even as a lengthy court battle threat
+                {{(featuredPost.data.title.length>100)? (featuredPost.data.title | slice:0:100)+'...':(featuredPost.data.title) }}
             </p>
-            <span>Read More >></span>
+            <ul class="post-info">
+                <li class="author" (click)='getAuthorBio(featuredPost.data.author)'><i>Posted by</i> {{featuredPost.data.author}}</li>
+                <li>{{featuredPost.data.num_comments | roundToThousand:2}} <i>Comments</i></li>
+                <li>{{featuredPost.data.score | roundToThousand:2}} <i>Ups</i></li>
+            </ul>
+            <span (click)='getThePostDetails(featuredPost.data.permalink)'>Read More >></span>
         </div>
     </div>
     <div class="filter-posts">
-        <ul>
-            <span>Sort</span>
-            <li *ngFor="let sortOption of sortOptions" [class.active]="selectedSortOption ==sortOption"  [ngClass]='sortOption' (click)="getUpdatedRedditFeeds(sortOption)">{{sortOption}}</li>
+        <ul [ngClass]="menuVisible ? 'change' : ''">
+            <span><span (click)="toggleNavigation()" [ngClass]="menuVisible ? 'change' : ''"></span>Sort</span>
+            <li *ngFor="let sortOption of sortOptions" [class.active]="selectedSortOption ==sortOption"
+                [ngClass]='sortOption' (click)="getUpdatedRedditFeeds(sortOption)">{{sortOption}}</li>
         </ul>
     </div>
     <div class="post-container">
         <div class="main-posts">
             <h2>Latest Posts</h2>
             <div class="post-item" *ngFor="let post of posts">
-                <p>
-                    <img *ngIf="post.data.thumbnail !='default'" src={{post.data.thumbnail}}>
-                    <img *ngIf="post.data.thumbnail =='default' " src='../../assets/images/default.png'>
-                    <span [style.background-color]="catagoryColor[post.data.link_flair_text]">{{post.data.link_flair_text}}</span>
-                   {{post.data.title}}
+                <p (click)='getThePostDetails(post.data.permalink)'>
+                    <img *ngIf="post.data.thumbnail !='default'" src={{post.data.thumbnail}}
+                        onError="this.src='../../assets/images/default.png';">
+                    <img *ngIf="post.data.thumbnail =='default'" src='../../assets/images/default.png'>
+                    <span [style.background-color]="catagoryColor[post.data.link_flair_text]"
+                        *ngIf="post.data.link_flair_text && post.data.link_flair_text!=''">{{post.data.link_flair_text}}</span>
+                    {{post.data.title}}
                 </p>
                 <ul class="post-info">
-                    <li>Posted by <span>{{post.data.author}}</span></li>
-                    <li><span class="comments">{{post.data.num_comments}}</span> Comments</li>
-                    <li><span class="ups">{{post.data.score}}</span> Ups</li>
+                    <li (click)='getAuthorBio(post.data.author)'>Posted by <span>{{post.data.author}}</span></li>
+                    <li><span class="comments">{{post.data.num_comments | roundToThousand:2}}</span> Comments</li>
+                    <li><span class="ups">{{post.data.score | roundToThousand:2}}</span> Ups</li>
                 </ul>
                 <hr>
             </div>
         </div>
         <div class="side-bar">
-            <h2>Featured Posts</h2>
+            <h2>Popular Subreddits</h2>
+            <div class="subreddit-list">
+                <div class="subreddit-item" *ngFor="let subreddit of popularSubreddits">
+                    <h4>{{subreddit.data.display_name}} <span>{{subreddit.data.subscribers | roundToThousand:2}}
+                            Subscribers</span></h4>
+                    <img src={{subreddit.data.icon_img}} />
+                    <p>{{ (subreddit.data.public_description.length>100)? (subreddit.data.public_description | slice:0:100)+'...':(subreddit.data.public_description) }}
+                    </p>
+
+                </div>
+            </div>
         </div>
     </div>
 </div>

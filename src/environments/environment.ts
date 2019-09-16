@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  redditUrl:'http://www.reddit.com/r/',
-  subreddit:'science/'
+  redditUrl:'http://www.reddit.com/',
+  subreddit:'r/science/'
 };
 
 /*

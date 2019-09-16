@@ -15,14 +15,24 @@ export class RedditService {
   getUpdatedRedditFeeds(option) : Observable<Post[]>{
     let url = this.serviceEndPoint + this.subreddit+option+'.json?sort='+option;
     return this.http.get<Post[]>(url);
+  }
 
-    /*let xhr = new XMLHttpRequest
-    xhr.open("GET","https://www.reddit.com/r/videos/new.json",true)
-    xhr.send(null)
-    xhr.onreadystatechange = function() {
-      if(this.status === 200) {
-        console.log(xhr.responseText)
-      }
-    }*/
+  getThePostDetails(postUrl) : Observable<any>{
+    let url = this.serviceEndPoint+postUrl.slice(0, -1)+'.json';
+    console.log("URL called", url);
+    return this.http.get<any>(url);
+  }
+
+  getAuthorBio(userName) : Observable<any>{
+    let url = this.serviceEndPoint+'user/'+userName+'/about.json';
+    return this.http.get<any>(url);
+  }
+  getAuthorInfo(userName) : Observable<any>{
+    let url = this.serviceEndPoint+'user/'+userName+'.json';
+    return this.http.get<any>(url);
+  }
+  getPopularSubreddits() : Observable<any>{
+    let url = this.serviceEndPoint+'subreddits/popular.json';
+    return this.http.get<any>(url);
   }
 }

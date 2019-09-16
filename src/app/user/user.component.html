@@ -1,0 +1,34 @@
+<div class="user-container" mat-dialog-content>
+    <div class="user-bio">
+        <h2>{{data.name}}<span *ngIf="data.subreddit.title!=''"> - {{data.subreddit.title}}</span></h2>
+        <div class="user-info">
+            <img *ngIf="data.icon_img !='default'" src={{data.icon_img}}
+                onError="this.src='../../assets/images/author-bios.png';">
+            <img *ngIf="data.icon_img  =='default' " src='../../assets/images/default.png'>
+            {{data.subreddit.public_description}}
+            <div class="karma-rating">
+                <p>{{data.link_karma  | roundToThousand:2}}<span>Post Karma</span></p>
+                <p>{{data.comment_karma  | roundToThousand:2}}<span>Comment Karma</span></p>
+            </div>
+        </div>
+    </div>
+    <div class="recent-activities">
+        <h2>Recent Posts</h2>
+        <div class="post-item" *ngFor="let post of recentPosts">
+            <p (click)="getDetails(post)">
+                <img *ngIf="post.data.thumbnail !='default'" src={{post.data.thumbnail}}
+                    onError="this.src='../../assets/images/default.png';">
+                <img *ngIf="post.data.thumbnail =='default' " src='../../assets/images/default.png'>
+                <span *ngIf="post.data.link_flair_text && post.data.link_flair_text!=''"
+                    [style.background-color]="catagoryColor[post.data.link_flair_text]">{{post.data.link_flair_text}}</span>
+                {{post.data.title}}{{post.data.body}}
+            </p>
+            <ul class="post-info">
+                <li>Posted by <span>{{post.data.author}}</span></li>
+                <li><span class="comments">{{post.data.num_comments | roundToThousand:2}}</span> Comments</li>
+                <li><span class="ups">{{post.data.score | roundToThousand:2}}</span> Ups</li>
+            </ul>
+            <hr>
+        </div>
+    </div>
+</div>

@@ -10,13 +10,19 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { HomeComponent } from './home/home.component';
+import { PostComponent } from './post/post.component';
+import { UserComponent } from './user/user.component';
+import { RoundToThousandPipe } from './round-to-thousand.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     FooterComponent,
-    HomeComponent
+    HomeComponent,
+    PostComponent,
+    UserComponent,
+    RoundToThousandPipe
   ],
   imports: [
     BrowserModule,
@@ -36,6 +42,7 @@ import { HomeComponent } from './home/home.component';
     ReactiveFormsModule, 
     FormsModule
   ],
+  entryComponents: [PostComponent, UserComponent],
   providers: [],
   bootstrap: [AppComponent]
 })
