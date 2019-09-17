@@ -1,4 +1,5 @@
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { TestBed, inject, async, ComponentFixture, fakeAsync, tick } from '@angular/core/testing';
 import { of, Observable } from 'rxjs';
 import { filter, map, catchError } from 'rxjs/operators';
@@ -32,7 +33,8 @@ describe('HomeComponent', () => {
         { provide: MatDialog, useValue: mockMatDialog },
         { provide: MatDialogRef, useValue: dialogMock }],
       imports: [HttpClientModule],
-      declarations: [HomeComponent, RoundToThousandPipe]
+      declarations: [HomeComponent, RoundToThousandPipe],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA]
     })
       .compileComponents();
   }));

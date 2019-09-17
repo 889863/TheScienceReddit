@@ -1,5 +1,5 @@
 <div class="post-container" mat-dialog-content>
-    <div class="post-item">
+    <div class="post-item" [style.border-color]="catagoryColor[originalPost.link_flair_text]">
         <p>
             <img *ngIf="originalPost.thumbnail !='default'" src={{originalPost.thumbnail}} onError="this.src='../../assets/images/default.png';">
             <img *ngIf="originalPost.thumbnail =='default' " src='../../assets/images/default.png'>
@@ -13,7 +13,7 @@
             <li><span class="comments">{{originalPost.num_comments | roundToThousand:2}}</span> Comments</li>
             <li><span class="ups">{{originalPost.score | roundToThousand:2}}</span> Ups</li>
         </ul>
-        <hr>
+        <hr [style.border-color]="catagoryColor[originalPost.link_flair_text]">
     </div>
     <div class="post-discussion">
         <div class="main-threads" *ngFor='let discussionItem of discussionItems'>

@@ -86,12 +86,12 @@ export class HomeComponent implements OnInit {
     console.log("Selected User Name : ", userName);
     this.redditService.getAuthorBio(userName).subscribe((data) => {
       console.log("Author Bio for the selected Author: -, "+userName, data);
-      this.spinner.hide();
       const dialogRef = this.dialog.open(UserComponent, {
         width: '90%',
         disableClose: false,
         data: data.data
       });
+      this.spinner.hide();
     },
       (error) => {
         console.log("Error while retreving Author Bio for  the Author:- , "+userName, error);
