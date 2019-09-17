@@ -1,7 +1,8 @@
 <div class="post-container" mat-dialog-content>
     <div class="post-item" [style.border-color]="catagoryColor[originalPost.link_flair_text]">
         <p>
-            <img *ngIf="originalPost.thumbnail !='default'" src={{originalPost.thumbnail}} onError="this.src='../../assets/images/default.png';">
+            <img *ngIf="originalPost.thumbnail !='default'" src={{originalPost.thumbnail}}
+                onError="this.src='../../assets/images/default.png';">
             <img *ngIf="originalPost.thumbnail =='default' " src='../../assets/images/default.png'>
             <span
                 [style.background-color]="catagoryColor[originalPost.link_flair_text]">{{originalPost.link_flair_text}}</span>
@@ -22,8 +23,8 @@
                 <li><span class="ups">{{discussionItem.data.score | roundToThousand:2}}</span> Ups</li>
             </ul>
             <p>{{discussionItem.data.body}}</p>
-            <span class="read-more" *ngIf='discussionItem.data.replies != ""' (click)='expandDiscussionThread(discussionItem.data.replies.data.children)'>Continue this thread >></span>
-            <div class="more-threads" *ngIf='discussionItem.data.replies'>                    
+            <span class="read-more" *ngIf='discussionItem.data.replies != ""'>Continue this thread >></span>
+            <div class="more-threads" *ngIf='discussionItem.data.replies'>
             </div>
             <hr>
         </div>

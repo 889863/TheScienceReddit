@@ -13,8 +13,8 @@ export class HeaderComponent implements OnInit {
   }
 
   /* This method is to toggle the Navigation Menu based on user actions */
-  toggleNavigation(){
-    this.menuVisible = !this.menuVisible;       
+  toggleNavigation() {
+    this.menuVisible = !this.menuVisible;
   }
 
 }

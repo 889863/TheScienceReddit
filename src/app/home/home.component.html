@@ -6,7 +6,8 @@
                 {{(featuredPost.data.title.length>100)? (featuredPost.data.title | slice:0:100)+'...':(featuredPost.data.title) }}
             </p>
             <ul class="post-info">
-                <li class="author" (click)='getAuthorBio(featuredPost.data.author)'><i>Posted by</i> {{featuredPost.data.author}}</li>
+                <li class="author" (click)='getAuthorBio(featuredPost.data.author)'><i>Posted by</i>
+                    {{featuredPost.data.author}}</li>
                 <li>{{featuredPost.data.num_comments | roundToThousand:2}} <i>Comments</i></li>
                 <li>{{featuredPost.data.score | roundToThousand:2}} <i>Ups</i></li>
             </ul>

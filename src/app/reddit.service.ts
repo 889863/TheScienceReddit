@@ -12,7 +12,7 @@ export class RedditService {
   subreddit: string = environment.subreddit;
   constructor(private http: HttpClient) { }
 
-  getUpdatedRedditFeeds(option) : Observable<Post[]>{
+  getUpdatedRedditFeeds(option) : Observable<any>{
     let url = this.serviceEndPoint + this.subreddit+option+'.json?sort='+option;
     return this.http.get<Post[]>(url);
   }

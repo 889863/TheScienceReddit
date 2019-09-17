@@ -14,34 +14,35 @@ import { Post } from './post';
 export class HomeComponent implements OnInit {
   menuVisible: boolean = false;
   sortOptions: string[] = ['hot', 'new', 'controversial', 'top', 'rising'];
-  catagoryColor:object = {
-    'Psychology':'#041c3f',
-    'Physics':'#d08dd2',
-    'Health':'#6289d1',
-    'Social Science':'#e4a966',
-    'Environment':'#7dd284',
-    'Biology':'#79c3bb',
-    'Paleontology':'#a0815f',
-    'Astronomy':'#ad7fc9',
-    'Animal Science':'#7ac877',
-    'Medicine':'#dd7c7e',
-    'Engineering':'#a8a8a8',
-    'Earth Science':'#cea67a'
-    
-  }
-  posts = new Array<Post>();
-  popularSubreddits:any[] = [];
-  selectedSortOption:string = 'hot';
-  featuredPost:object;
-  constructor(private redditService: RedditService,  public dialog: MatDialog, private spinner: NgxSpinnerService) { }
+  catagoryColor: object = {
+    'Psychology': '#041c3f',
+    'Physics': '#d08dd2',
+    'Health': '#6289d1',
+    'Social Science': '#e4a966',
+    'Environment': '#7dd284',
+    'Biology': '#79c3bb',
+    'Paleontology': '#a0815f',
+    'Astronomy': '#ad7fc9',
+    'Animal Science': '#7ac877',
+    'Medicine': '#dd7c7e',
+    'Engineering': '#a8a8a8',
+    'Earth Science': '#cea67a'
 
-  ngOnInit() {
-    this.getUpdatedRedditFeeds('hot');
+  }
+  posts: any;
+  popularSubreddits: any[] = [];
+  selectedSortOption: string = 'hot';
+  featuredPost: any;
+  constructor(private redditService: RedditService, public dialog: MatDialog, private spinner: NgxSpinnerService) { }
+
+  ngOnInit() {    
+    /* Getting the Feeds based on the default category on component initialization*/
+    this.getUpdatedRedditFeeds(this.selectedSortOption);
     this.getPopularSubreddits();
   }
 
   /* This method is to get the latest post based on the selected sort option */
-  getUpdatedRedditFeeds(option:string) {
+  getUpdatedRedditFeeds(option: string) {
     //this.enableLoading();
     this.spinner.show();
     this.selectedSortOption = option;
@@ -53,7 +54,7 @@ export class HomeComponent implements OnInit {
       this.posts = res.data.children;
       this.spinner.hide();
     },
-      (error) =>{
+      (error) => {
         console.log("Getting updated Feed for the sort option FAILED : " + option, error);
         this.spinner.hide();
       }
@@ -61,11 +62,11 @@ export class HomeComponent implements OnInit {
   }
 
   /*This method is to get all the details about the selected post*/
-  getThePostDetails(postUrl:string) {
+  getThePostDetails(postUrl: string) {
     this.spinner.show();
     console.log("Selected post Id : ", postUrl);
     this.redditService.getThePostDetails(postUrl).subscribe((data) => {
-      console.log("Post Details for the selected Post: - postUrl, "+postUrl, data);
+      console.log("Post Details for the selected Post: - postUrl, " + postUrl, data);
       this.spinner.hide();
       const dialogRef = this.dialog.open(PostComponent, {
         width: '95%',
@@ -74,18 +75,18 @@ export class HomeComponent implements OnInit {
       });
     },
       (error) => {
-        console.log("Error while retreving the selected Post: - postUrl, "+postUrl, error);
+        console.log("Error while retreving the selected Post: - postUrl, " + postUrl, error);
         this.spinner.hide();
       }
     );
   }
 
-   /*This method is to get the Author Bio*/
-   getAuthorBio(userName:string){
+  /*This method is to get the Author Bio*/
+  getAuthorBio(userName: string) {
     this.spinner.show();
     console.log("Selected User Name : ", userName);
     this.redditService.getAuthorBio(userName).subscribe((data) => {
-      console.log("Author Bio for the selected Author: -, "+userName, data);
+      console.log("Author Bio for the selected Author: -, " + userName, data);
       const dialogRef = this.dialog.open(UserComponent, {
         width: '90%',
         disableClose: false,
@@ -94,14 +95,14 @@ export class HomeComponent implements OnInit {
       this.spinner.hide();
     },
       (error) => {
-        console.log("Error while retreving Author Bio for  the Author:- , "+userName, error);
+        console.log("Error while retreving Author Bio for  the Author:- , " + userName, error);
         this.spinner.hide();
       }
     );
   }
 
   /*Get Popular subreddits list*/
-  getPopularSubreddits(){
+  getPopularSubreddits() {
     this.redditService.getPopularSubreddits().subscribe((data) => {
       console.log("Getting the Popular Subreddits information: -, ", data);
       this.popularSubreddits = data.data.children;
@@ -111,9 +112,9 @@ export class HomeComponent implements OnInit {
       }
     );
   }
-
-  toggleNavigation(){
-    this.menuVisible = !this.menuVisible;       
+  
+  toggleNavigation() {
+    this.menuVisible = !this.menuVisible;
   }
 
 }

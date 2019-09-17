@@ -1,5 +1,6 @@
 export class Post {
-
+  public data:object;
+  public children :object
   public title: string;
   public ups: number;
   public score: number;
