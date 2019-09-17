@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { NgxSpinnerService } from "ngx-spinner";
 import { RedditService } from '../reddit.service';
 import { PostComponent } from '../post/post.component';
 import { UserComponent } from '../user/user.component';
 import { Post } from './post';
-
-
 
 @Component({
   selector: 'app-home',
@@ -34,7 +33,7 @@ export class HomeComponent implements OnInit {
   popularSubreddits:any[] = [];
   selectedSortOption:string = 'hot';
   featuredPost:object;
-  constructor(private redditService: RedditService,  public dialog: MatDialog) { }
+  constructor(private redditService: RedditService,  public dialog: MatDialog, private spinner: NgxSpinnerService) { }
 
   ngOnInit() {
     this.getUpdatedRedditFeeds('hot');
@@ -43,6 +42,8 @@ export class HomeComponent implements OnInit {
 
   /* This method is to get the latest post based on the selected sort option */
   getUpdatedRedditFeeds(option:string) {
+    //this.enableLoading();
+    this.spinner.show();
     this.selectedSortOption = option;
     this.menuVisible = false;
     console.log("Getting the reddit feed based on the sort option : ", option);
@@ -50,18 +51,22 @@ export class HomeComponent implements OnInit {
       console.log("Updated Feed for the sort option : " + option, res.data.children);
       this.featuredPost = res.data.children.shift();
       this.posts = res.data.children;
+      this.spinner.hide();
     },
       (error) =>{
         console.log("Getting updated Feed for the sort option FAILED : " + option, error);
+        this.spinner.hide();
       }
     );
   }
 
   /*This method is to get all the details about the selected post*/
   getThePostDetails(postUrl:string) {
+    this.spinner.show();
     console.log("Selected post Id : ", postUrl);
     this.redditService.getThePostDetails(postUrl).subscribe((data) => {
       console.log("Post Details for the selected Post: - postUrl, "+postUrl, data);
+      this.spinner.hide();
       const dialogRef = this.dialog.open(PostComponent, {
         width: '95%',
         disableClose: false,
@@ -70,15 +75,18 @@ export class HomeComponent implements OnInit {
     },
       (error) => {
         console.log("Error while retreving the selected Post: - postUrl, "+postUrl, error);
+        this.spinner.hide();
       }
     );
   }
 
    /*This method is to get the Author Bio*/
    getAuthorBio(userName:string){
+    this.spinner.show();
     console.log("Selected User Name : ", userName);
     this.redditService.getAuthorBio(userName).subscribe((data) => {
       console.log("Author Bio for the selected Author: -, "+userName, data);
+      this.spinner.hide();
       const dialogRef = this.dialog.open(UserComponent, {
         width: '90%',
         disableClose: false,
@@ -87,6 +95,7 @@ export class HomeComponent implements OnInit {
     },
       (error) => {
         console.log("Error while retreving Author Bio for  the Author:- , "+userName, error);
+        this.spinner.hide();
       }
     );
   }

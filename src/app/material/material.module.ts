@@ -5,6 +5,8 @@ import { MatDatepickerModule,
   MatFormFieldModule,
   MatInputModule, MatSelectModule, MatDialogModule  } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgxSpinnerModule } from "ngx-spinner";
+
 
 @NgModule({
   declarations: [],
@@ -16,6 +18,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatInputModule,
     MatSelectModule,
     MatDialogModule,
+    NgxSpinnerModule,
     BrowserAnimationsModule
   ],
   exports: [
@@ -25,6 +28,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatInputModule,
     MatSelectModule,
     MatDialogModule,
+    NgxSpinnerModule,
     BrowserAnimationsModule
   ],
   providers: [MatDatepickerModule]
