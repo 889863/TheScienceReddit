@@ -36,8 +36,4 @@ export class PostComponent implements OnInit {
 
   }
 
-  expandDiscussionThread(replies){
-    console.log("+++++++++++++++++++++++++++++++", replies);
-  }
-
 }

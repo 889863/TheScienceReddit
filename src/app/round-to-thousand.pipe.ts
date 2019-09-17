@@ -8,9 +8,9 @@ export class RoundToThousandPipe implements PipeTransform {
   transform(input: any, args?: any): any {
     var exp, rounded,
       suffixes = ['K', 'M', 'G', 'T', 'P', 'E'];
-    if (Number.isNaN(input)) {
+    /*if (Number.isNaN(input)) {
       return null;
-    }
+    }*/
     input = parseInt(input);
     if (input < 1000) {
       return input;

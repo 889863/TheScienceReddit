@@ -49,8 +49,4 @@ export class UserComponent implements OnInit {
       }
     );
   }
-
-  getDetails(post){
-    console.log("++++++++++++++++++++++", post);
-  }
 }
